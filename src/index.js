@@ -40,6 +40,9 @@ function init({ types }) {
 
     function getTestOption(option) {
         if (!isRegExp(option) && isEmpty(option)) throwError(1, optionLabels.test);
+        try{
+            if(typeof option === "string") option = new RegExp(option)
+        }catch(e){}
         if (!isRegExp(option)) throwError(2, optionLabels.test);
         return option;
     };
